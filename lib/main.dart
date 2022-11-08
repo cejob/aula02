@@ -30,6 +30,9 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  bool obscureText = true;
+
+  IconData iconPassword = Icons.visibility_off;
 
   @override
   Widget build(BuildContext context) {
@@ -42,8 +45,21 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+
+              Text("Bem-vindo",
+                  style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold,)),
+              const SizedBox(
+                height: 30,
+              ),
+              Text("Faça login para continuar", style: TextStyle(),),
+              const SizedBox(
+                height: 120,
+              ),
               const Icon(
                 Icons.account_circle,size: 180
+              ),
+              const SizedBox(
+                height: 100,
               ),
               TextFormField(
                 decoration: const InputDecoration(
@@ -55,13 +71,31 @@ class _MyHomePageState extends State<MyHomePage> {
                 height: 40,
               ),
               TextFormField(
-                obscureText: true,
-                decoration: const InputDecoration(
-                  prefixIcon: Icon(Icons.key),
-                  suffixIcon: Icon(Icons.visibility),
+                obscureText: obscureText,
+                decoration:InputDecoration(
                   hintText: "Senha",
+                  prefixIcon: Icon(Icons.key),
+                  suffixIcon: IconButton( 
+                    onPressed: (){
+                      if (obscureText == true){
+                        setState(() {
+                          obscureText = false;
+                          iconPassword = Icons.visibility_off;
+                        });
+                      } else{
+                        setState(() {
+                          obscureText = true;
+                          iconPassword = Icons.visibility;
+                        });
+                      }
+                    },
+                  icon: Icon(iconPassword)),
                 )
               ),
+              const SizedBox(
+                height: 40,
+              ),
+              Text("Esqueceu a senha?", style: TextStyle(),),
               SizedBox(height: 50),
               ElevatedButton(
                 style: ButtonStyle(
@@ -75,7 +109,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
              
               child: Text("Login".toUpperCase(),
-              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold,),) ),)]
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold,),),),),
+              const SizedBox(
+                height: 40,
+              ),
+              Text("Ainda não tem conta? Clique aqui para criar conta", style: TextStyle(),),]
           ),
         ),
       ),
