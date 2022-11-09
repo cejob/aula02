@@ -55,8 +55,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 Text("Faça login para continuar", 
                 style: TextStyle(
-                    color: Colors.grey
-                  ,),),
+                    color: Colors.black,
+                  ),
+                ),
                 const SizedBox(
                   height: 120,
                 ),
@@ -133,7 +134,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 Text("Ainda não tem conta? ", 
                   style: TextStyle(
-                    color: Colors.grey
+                    color: Colors.black,
                   ),),
                 Text("Clique aqui para criar conta",
                   style: TextStyle(
