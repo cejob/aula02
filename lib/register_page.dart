@@ -2,16 +2,16 @@ import 'package:aula02/widget/eleveted_button_custom.dart';
 import 'package:aula02/widget/text_form_field_custom.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key, required this.title});
+class RegiterPage extends StatefulWidget {
+  const RegiterPage ({super.key, required this.title});
 
   final String title;
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegiterPage > createState() => _RegiterPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegiterPageState extends State<RegiterPage> {
   bool obscureText = true;
 
   @override
@@ -74,8 +74,8 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ],
               ),
-              const SizedBox(height: 25),
-              const ElevetedButtonCustom(description: "Login"),
+              const SizedBox(height: 300),
+              const ElevetedButtonCustom(description: "Criar conta"),
               const SizedBox(
                 height: 10,
               ),
@@ -84,9 +84,12 @@ class _LoginPageState extends State<LoginPage> {
                 text: const TextSpan(
                   style: TextStyle(color: Colors.black, fontSize: 36),
                   children: <TextSpan>[
-                    TextSpan(text: 'Ainda não tem conta? '),
                     TextSpan(
-                      text: 'Clique aqui\n para criar conta',
+                      text: 'Estou de acordo com os',
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                    TextSpan(
+                      text: 'termos e obrigações',
                       style: TextStyle(color: Colors.blueAccent),
                     ),
                   ],
