@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const RegiterPage(title: 'Bem vindo'),
+      home: const RegiterPage(title: 'Registra-se'),
     );
   }
 }
