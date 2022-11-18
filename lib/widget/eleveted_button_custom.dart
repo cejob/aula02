@@ -2,8 +2,13 @@ import 'package:flutter/material.dart';
 
 class ElevetedButtonCustom extends StatefulWidget {
   final String description;
+  final VoidCallback function;
 
-  const ElevetedButtonCustom({super.key, required this.description});
+  const ElevetedButtonCustom({
+    super.key, 
+    required this.description,
+    required this.function,
+    });
 
   @override
   State<ElevetedButtonCustom> createState() => _ElevetedButtonCustomState();
@@ -15,13 +20,17 @@ class _ElevetedButtonCustomState extends State<ElevetedButtonCustom> {
     return ElevatedButton(
         style: const ButtonStyle(
           backgroundColor: MaterialStatePropertyAll<Color>(Colors.blue),
+          minimumSize:
+              MaterialStatePropertyAll<Size?>(Size.fromHeight(50)), // NEW
         ),
-        onPressed: () {},
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 90, vertical: 20),
-          child: Text(
-            widget.description.toUpperCase(),
-            style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+        onPressed:widget.function,
+        child: Expanded(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 90, vertical: 20),
+            child: Text(
+              widget.description.toUpperCase(),
+              style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+            ),
           ),
         ));
   }

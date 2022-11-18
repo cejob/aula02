@@ -1,3 +1,4 @@
+import 'package:aula02/register_page.dart';
 import 'package:aula02/widget/eleveted_button_custom.dart';
 import 'package:aula02/widget/text_form_field_custom.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,6 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    print("BUILD ENTREI");
     return Scaffold(
       body: Center(
         child: Padding(
@@ -47,7 +47,7 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(height: 25),
               TextFormFieldCustom(
                 obscureText: obscureText,
-                description: 'Senha',
+                description: 'senha',
                 prefixIcon: const Icon(Icons.key, color: Colors.blue),
                 suffixIcon: IconButton(
                   onPressed: () {
@@ -75,24 +75,40 @@ class _LoginPageState extends State<LoginPage> {
                 ],
               ),
               const SizedBox(height: 25),
-              const ElevetedButtonCustom(description: "Login"),
+              ElevetedButtonCustom(
+                description: "Login", 
+                function: (){
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: ((context) =>
+                        const RegisterPage(title: "HOME"))));
+                 }),
               const SizedBox(
                 height: 10,
               ),
-              RichText(
-                textAlign: TextAlign.center,
-                text: const TextSpan(
-                  style: TextStyle(color: Colors.black, fontSize: 36),
-                  children: <TextSpan>[
-                    TextSpan(text: 'Ainda não tem conta? '),
-                    TextSpan(
-                      text: 'Clique aqui\n para criar conta',
-                      style: TextStyle(color: Colors.blueAccent),
+              GestureDetector(
+                onTap: (){
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          const RegisterPage(title: "Registra-se"), 
                     ),
-                  ],
+                  );
+                },
+                child: RichText(
+                  textAlign: TextAlign.center,
+                  text: const TextSpan(
+                    style: TextStyle(color: Colors.black, fontSize: 36),
+                    children: <TextSpan>[
+                      TextSpan(text: 'Ainda não tem conta? '),
+                      TextSpan(
+                        text: 'Clique aqui\n para criar conta',
+                        style: TextStyle(color: Colors.blueAccent),
+                      ),
+                    ],
+                  ),
+                  textScaleFactor: 0.5,
                 ),
-                textScaleFactor: 0.5,
-              )
+              ),
             ],
           ),
         ),

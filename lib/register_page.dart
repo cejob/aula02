@@ -1,31 +1,32 @@
-import 'dart:html';
-import 'dart:js_util';
+import 'dart:ui';
 
+import 'package:aula02/login_page.dart';
 import 'package:aula02/widget/eleveted_button_custom.dart';
 import 'package:aula02/widget/text_form_field_custom.dart';
 import 'package:flutter/material.dart';
 
-enum StringCharater {masculino, feminino}
+enum StringCharacter { feminino, masculino }
 
-class RegiterPage extends StatefulWidget {
-  const RegiterPage({super.key, required this.title});
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key, required this.title});
 
   final String title;
 
   @override
-  State<RegiterPage> createState() => _RegiterPageState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _RegiterPageState extends State<RegiterPage> {
+class _RegisterPageState extends State<RegisterPage> {
   bool obscureText = true;
-  StringCharater? genero = StringCharater.feminino;
- 
+  StringCharacter? kauane = StringCharacter.feminino;
 
   @override
   Widget build(BuildContext context) {
-    print("BUILD ENTREI");
-    
     return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
+        centerTitle: true,
+      ),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(48.0),
@@ -33,106 +34,97 @@ class _RegiterPageState extends State<RegiterPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Text(
-                  widget.title,
-                  style: const TextStyle(
-                      color: Colors.blue,
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold),
+                const SizedBox(height: 20),
+                const Text(
+                  "Preencha os dados para se cadastrar",
+                  style: TextStyle(
+                      color: Color(
+                    0xffB6CED8,
+                  )),
                 ),
-                const SizedBox(height: 15),
-                const Text("Preencha os dados para se Cadastrar"),
-                const SizedBox(
-                  height: 20,
-                ),
+                const SizedBox(height: 30),
                 TextFormFieldCustom(
                   description: 'Nome',
                   prefixIcon: const Icon(Icons.person, color: Colors.black),
                 ),
-                const SizedBox(height: 15),
+                const SizedBox(height: 25),
                 TextFormFieldCustom(
                   description: 'E-mail',
                   prefixIcon: const Icon(Icons.email, color: Colors.black),
                 ),
-                const SizedBox(height: 25),
-                Divider(color: Colors.black),
-                const SizedBox(height: 25),
-                const Text("Genero",
-                    style: const TextStyle(
-                      color: Colors.blue,
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold),
+                const SizedBox(height: 30),
+                const Divider(),
+                const SizedBox(height: 15),
+                const Text(
+                  'Gênero',
+                  style: TextStyle(color: Colors.blue, fontSize: 25),
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Container(
+                    SizedBox(
                       width: MediaQuery.of(context).size.width * 0.4,
-                      child: RadioListTile<StringCharater>(
-                        value: StringCharater.masculino,
-                        title: Text("Masculino"), 
-                        groupValue: genero,
-                        onChanged: (StringCharater? topera) {
-                          setState(() {
-                            genero = topera;
-                          }); 
-                          },
-                      ),
+                      child: RadioListTile(
+                          value: StringCharacter.feminino,
+                          title: const Text("Feminino"),
+                          groupValue: kauane,
+                          onChanged: (StringCharacter? coimbra) {
+                            setState(() {
+                              kauane = coimbra;
+                            });
+                          }),
                     ),
-                    Container(
+                    SizedBox(
                       width: MediaQuery.of(context).size.width * 0.4,
-                      child: RadioListTile<StringCharater>(
-                        value: StringCharater.feminino,
-                        title: Text("Feminino"), 
-                        groupValue: genero,
-                        onChanged: (StringCharater? topera) {
-                          setState(() {
-                            genero = topera;
-                          }); 
-                          },
-                      ),
+                      child: RadioListTile(
+                          title: const Text("Masculino"),
+                          value: StringCharacter.masculino,
+                          groupValue: kauane,
+                          onChanged: (StringCharacter? coimbra) {
+                            setState(() {
+                              kauane = coimbra;
+                            });
+                          }),
                     ),
                   ],
                 ),
-                const SizedBox(height: 5),
-                Divider(color: Colors.black),
-                const SizedBox(height: 25),
+                const SizedBox(height: 30),
+                const Divider(),
+                const SizedBox(height: 30),
                 TextFormFieldCustom(
                   description: 'Telefone',
-                  prefixIcon:
-                      const Icon(Icons.call, color: Colors.black),
+                  prefixIcon: const Icon(Icons.call, color: Colors.black),
                 ),
-                const SizedBox(height: 25),
+                const SizedBox(height: 20),
                 TextFormFieldCustom(
-                  description: 'Data Nacimento',
+                  description: 'Data Nascimento',
                   prefixIcon:
-                      const Icon(Icons.calendar_month, color: Colors.black),
+                      const Icon(Icons.calendar_today, color: Colors.black),
                 ),
-                const SizedBox(height: 25),
+                const SizedBox(height: 20),
                 Row(
                   children: [
                     SizedBox(
-                      width: 200,
+                      width: MediaQuery.of(context).size.width * 0.60,
                       child: TextFormFieldCustom(
                         description: 'Cidade',
-                        prefixIcon:
-                            const Icon(Icons.business, color: Colors.black),
+                        prefixIcon: const Icon(Icons.location_city,
+                            color: Colors.black),
                       ),
                     ),
-                    const SizedBox(width: 25),
-                    SizedBox(
-                      width: 160,
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Expanded(
                       child: TextFormFieldCustom(
                         description: 'Estado',
-                        prefixIcon:
-                            const Icon(Icons.business, color: Colors.black),
+                        prefixIcon: const Icon(null),
                       ),
                     ),
                   ],
                 ),
-                const SizedBox(height: 25),
-                Divider(color: Colors.black),
-                const SizedBox(height: 25),
+                const SizedBox(height: 30),
+                const Divider(),
+                const SizedBox(height: 30),
                 TextFormFieldCustom(
                   obscureText: obscureText,
                   description: 'Senha',
@@ -145,15 +137,18 @@ class _RegiterPageState extends State<RegiterPage> {
                     },
                     icon: Icon(
                         obscureText ? Icons.visibility_off : Icons.visibility,
-                        color: Colors.blue),
+                        color: Colors.black),
                   ),
+                ),
+                const SizedBox(
+                  height: 10,
                 ),
                 const SizedBox(
                   height: 10,
                 ),
                 TextFormFieldCustom(
                   obscureText: obscureText,
-                  description: 'Repetir senha',
+                  description: 'Repita senha',
                   prefixIcon: const Icon(Icons.key, color: Colors.black),
                   suffixIcon: IconButton(
                     onPressed: () {
@@ -163,34 +158,40 @@ class _RegiterPageState extends State<RegiterPage> {
                     },
                     icon: Icon(
                         obscureText ? Icons.visibility_off : Icons.visibility,
-                        color: Colors.blue),
+                        color: Colors.black),
                   ),
                 ),
-                const SizedBox(height: 50),
-                const ElevetedButtonCustom(description: "Criar conta"),
+                const SizedBox(
+                  height: 10,
+                ),
+                const SizedBox(height: 10),
+                ElevetedButtonCustom(
+                  description: "Criar conta",
+                   function: (){
+                     Navigator.of(context).push(MaterialPageRoute(
+                       builder: ((context) =>
+                           const LoginPage(title: "LOGIN"))));
+                   }),
                 const SizedBox(
                   height: 10,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(Icons.check_circle,color: Colors.blue,),
+                    const Icon(Icons.check_circle, color: Colors.blue),
                     RichText(
                       textAlign: TextAlign.center,
                       text: const TextSpan(
-                        style: TextStyle(color: Colors.black, fontSize: 36),
+                        style: TextStyle(color: Colors.black, fontSize: 16),
                         children: <TextSpan>[
+                          TextSpan(text: 'Estou  de acordo com os '),
                           TextSpan(
-                            text: 'Estou de acordo com os',
-                            style: TextStyle(color: Colors.grey),
-                          ),
-                          TextSpan(
-                            text: ' termos e obrigações',
+                            text: 'termos e obrigações',
                             style: TextStyle(color: Colors.blueAccent),
                           ),
                         ],
                       ),
-                      textScaleFactor: 0.5,
+                      textScaleFactor: 0.8,
                     ),
                   ],
                 )
@@ -202,6 +203,3 @@ class _RegiterPageState extends State<RegiterPage> {
     );
   }
 }
-
-class Genero {
-} //125
